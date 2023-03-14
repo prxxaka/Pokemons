@@ -11,26 +11,32 @@ const MainPage = () =>  {
     const [ pageCount, setPageCount ] = useState(0);
     const [sortedPokemons, setSortedPokemons] = useState([])
 
-    useEffect(()=> {
-        setSortedPokemons(sortItem(pokemonList))
-    }, [pokemonList])
+    useEffect(()=>{
+      fetchPokemons(limit, offset).then((data) => {
+          setPageCount((Math.ceil(data.count / 10)))
+      })
+        fetchPokemons(offset, limit + offset).then((pokemons) => {
+            setPokemonList(pokemons)
+            setSortedPokemons(pokemons)
+        })
+    }, [offset])
 
-    // const sortHandle = type = {
-    //     // setSortedPokemons(sortItem(pokemonList, type))
-    // }
+    const sortHandle = type = {
+        setSortedPokemons(sortItem(pokemonList, type))
+    }
 
-    // return (
-    //     <div className={'MainPage'}>
-    //         <div className={'container'}>
-    //             <button onClick={()=> sortItem('attach')}>Attack</button>
-    //             <button onClick={()=> sortItem('weight')}>Weight</button>
-    //             <div className={'pokemonList'}>
-    //                 {sortedPokemons.map(pokemon => <PokemonCard
-    //                     pokemon={pokemon} />)}
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
+    return (
+        <div className={'MainPage'}>
+            <div className={'container'}>
+                <button onClick={()=> sortHandle('attach')}>Attack</button>
+                <button onClick={()=> sortHandle('weight')}>Weight</button>
+                <div className={'pokemonList'}>
+                    {sortedPokemons.map(pokemon => <PokemonCard
+                        pokemon={pokemon} />)}
+                </div>
+            </div>
+        </div>
+    )
 
     const limit = 10;
     useEffect(() => {
