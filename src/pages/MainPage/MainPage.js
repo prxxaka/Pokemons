@@ -2,34 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchPokemons } from '../../api/fetchPokemons';
 import Pagination from '../../components/Pagination/Pagination'
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
-import {sortItem} from "../../common/helpers";
 const MainPage = () =>  {
     const [ pokemonList, setPokemonList ] = useState([]);
     const [ offset, setOffset ] = useState(10);
     const [page, setPage ] = useState(1);
     const [ pageCount, setPageCount ] = useState(0);
-    const [sortedPokemons, setSortedPokemons] = useState([])
 
-    useEffect(() => {
-        setSortedPokemons(pokemonList)
-    }, [pokemonList])
-
-    const sortHandle = type => {
-        setSortedPokemons(sortItem(pokemonList, type))
-    }
-
-    return (
-        <div>
-            <div>
-                <button onClick={() => sortHandle('attach')}>Attack</button>
-                <button onClick={() => sortHandle('weight')}>Weight</button>
-            <div>
-                {sortedPokemons.map(pokemon => <PokemonCard
-                    pokemon={pokemon} />)}
-            </div>
-            </div>
-        </div>
-    )
     const limit = 10;
     useEffect(() => {
         fetchPokemons(limit, offset)

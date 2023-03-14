@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import About from "./pages/About/About";
+import AboutPokemon from "./pages/AboutPokemon/AboutPokemon";
 import { MainPage } from "./pages/MainPage";
-import { PokemonInfo } from "./pages/PokemonInfo";
-import { Link } from "react-router-dom";
 import { fetchPokemonS } from "./api/fetchPokemons";
 const App = () =>  {
     const [ theme, setTheme ] = useState('dark');
@@ -23,8 +21,7 @@ const App = () =>  {
             </button>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/pokemon/:id" element={<PokemonInfo /> }  />
+                <Route path="/about" element={<AboutPokemon />} />
             </Routes>
         </div>
     );

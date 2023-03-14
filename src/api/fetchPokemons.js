@@ -1,5 +1,4 @@
 import axios from "axios"
-import { sortItem } from "../common/helpers"
 const baseURL = 'https://pokeapi.co/api/v2/'
 
 export const fetchPokemons = async(limit, offset) => {
@@ -19,7 +18,6 @@ export const fetchPokemonS = async(from, till) => {
         const data = await axios.get(baseURL + 'pokemon/' + i)
         list.push(data.data)
     }
-    console.log(sortItem(list, 'attach'), 'sortList');
 }
 
 export const getPokemon = async(id) => {
