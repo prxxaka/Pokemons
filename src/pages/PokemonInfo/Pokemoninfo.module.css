@@ -1,0 +1,20 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.info img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.info h1 {
+    margin-top: 40px;
+}
+.text {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
